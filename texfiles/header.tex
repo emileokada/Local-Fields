@@ -1,0 +1,274 @@
+% Imports
+
+%% Quotations (S. Gammelgaard)
+\usepackage{verbatim}
+\usepackage{csquotes}
+
+%% Mathematics
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}    % Extra symbols
+\usepackage{amsthm}     % Theorem-like environments
+\usepackage{calligra}	% For the \sheafHom command
+\usepackage{cancel}     % Cancel terms with \cancel, \bcancel or \xcancel
+\usepackage{dsfont}     % Double stroke font with \mathds{}
+\usepackage{mathtools}  % Fonts and environments for mathematical formulae
+\usepackage{mathrsfs}   % Script font with \mathscr{}
+\usepackage{stmaryrd}   % Brackets
+\usepackage{thmtools}   % Theorem-like environments, extends amsthm
+
+%% Graphics
+\usepackage[dvipsnames,svgnames,cmyk]{xcolor}     % Pre-defined colors
+\usepackage{graphicx}         % Tool for importing images
+\graphicspath{{figures/}}
+\usepackage{tikz}             % Drawing tool
+\usetikzlibrary{calc}
+\usetikzlibrary{intersections}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usepackage{tikz-cd}		  % Commutative diagrams
+\usepackage[all]{xy}
+
+%% Organising tools
+\usepackage[notref, notcite]{showkeys}               % Labels in margins
+\usepackage[color= LightGray,bordercolor = LightGray,textsize    = footnotesize,figwidth    = 0.99\linewidth,obeyFinal]{todonotes} % Marginal notes
+
+%% Misc
+\usepackage{xspace}         % Clever space
+\usepackage{textcomp}       % Extra symbols
+\usepackage{multirow}       % Rows spanning multiple lines in tables
+\usepackage{tablefootnote}  % Footnotes for tables
+
+%% Bibliography
+\usepackage[backend = biber, style = alphabetic, ibidtracker=true]{biblatex}
+\addbibresource{bibliography.bib}
+
+%% Cross references
+\usepackage{varioref}
+%\usepackage[nameinlink, capitalize, noabbrev]{cleveref}
+\usepackage[pdftex,hidelinks]{hyperref}
+
+\pageaiv
+\stockaiv
+
+\setsecnumdepth{subsection}
+
+\pretitle{\begin{center}\huge\sffamily\bfseries}
+
+%% Book
+\renewcommand*{\printbooktitle}[1]
+{
+    \hrule\vskip\onelineskip
+    \centering\booktitlefont #1
+    \vskip\onelineskip\hrule
+}
+\renewcommand*{\afterbookskip}{\par}
+\renewcommand*{\booktitlefont}{\Huge\bfseries\sffamily}
+\renewcommand*{\booknamefont}{\normalfont\huge\bfseries\MakeUppercase}
+
+
+%% Part
+\renewcommand*{\printparttitle}[1]
+{
+    \hrule\vskip\onelineskip
+    \centering\parttitlefont #1
+    \vskip\onelineskip\hrule
+}
+\renewcommand*{\afterpartskip}{\par}
+\renewcommand*{\parttitlefont}{\Huge\bfseries\sffamily}
+\renewcommand*{\partnamefont}{\normalfont\huge\bfseries\MakeUppercase}
+
+
+%% Chapter 
+\makeatletter
+\chapterstyle{demo2}
+\renewcommand*{\printchaptername}
+{
+    \centering\chapnamefont\MakeUppercase{\@chapapp}
+}
+\renewcommand*{\printchapternum}{\chapnumfont\thechapter\space}
+\renewcommand*{\chaptitlefont}{\Huge\bfseries\sffamily\center}
+\let\ps@chapter\ps@empty
+
+
+%% Lower level sections
+\setsecheadstyle{\Large\bfseries\sffamily\raggedright}
+\setsubsecheadstyle{\large\bfseries\sffamily\raggedright}
+\setsubsubsecheadstyle{\normalsize\bfseries\sffamily\raggedright}
+\setparaheadstyle{\normalsize\bfseries\sffamily\raggedright}
+\setsubparaheadstyle{\normalsize\bfseries\sffamily\raggedright}
+
+
+%% Abstract
+\renewcommand{\abstractnamefont}{\sffamily\bfseries}
+
+
+%% Header
+\pagestyle{ruled}
+\makeevenhead{ruled}{\sffamily\leftmark}{}{}
+\makeoddhead {ruled}{}{}{\sffamily\rightmark}
+
+
+%% Trim marks
+\trimLmarks
+
+%% Environments
+\declaretheorem[style = plain, numberwithin = section]{thm}
+\declaretheorem[style = plain,      sibling = thm]{corollary}
+\declaretheorem[style = plain,      sibling = thm]{lemma}
+\declaretheorem[style = plain,      sibling = thm]{proposition}
+\declaretheorem[style = plain,      sibling = thm]{observation}
+\declaretheorem[style = plain,      sibling = thm]{conjecture}
+\declaretheorem[style = definition, sibling = thm]{definition}
+\declaretheorem[style = definition, sibling = thm]{example}
+\declaretheorem[style = definition, sibling = thm]{notation}
+\declaretheorem[style = remark,     sibling = thm]{remark}
+%\crefname{observation}{Observation}{Observations}
+%\Crefname{observation}{Observation}{Observations}
+%\crefname{conjecture}{Conjecture}{Conjectures}
+%\Crefname{conjecture}{Conjecture}{Conjectures}
+%\crefname{notation}{Notation}{Notations}
+%\Crefname{notation}{Notation}{Notations}
+%\crefname{diagram}{Diagram}{Diagrams}
+%\Crefname{diagram}{Diagram}{Diagrams}
+
+%% Operators
+\DeclareMathOperator{\spn}{span}				% Span of vectors
+\DeclareMathOperator{\Gal}{Gal}					% Galois group
+\DeclareMathOperator{\Spec}{Spec}				% Spectrum
+\DeclareMathOperator{\Proj}{Proj}				% Proj construction
+\DeclareMathOperator{\Gr}{\mathbb{G}}			% Grassmannian
+\DeclareMathOperator{\Aut}{Aut}					% Automorphisms
+\DeclareMathOperator{\End}{End}					% Endomorphisms
+\DeclareMathOperator{\CH}{CH}					% Chow ring/group
+\DeclareMathOperator{\CHr}{CH^\bullet}			% Chow ring
+\DeclareMathOperator{\Cox}{Cox}					% Cox ring
+\DeclareMathOperator{\Div}{Div}					% Divisor group
+\DeclareMathOperator{\Cl}{Cl}					% Class group
+\DeclareMathOperator{\Pic}{Pic}					% Picard group
+\DeclareMathOperator{\relSpec}{\mathbf{Spec}}	% Relative Spec
+\DeclareMathOperator{\relProj}{\mathbf{Proj}}	% Relative Proj
+\DeclareMathOperator{\ord}{ord}					% Order
+\DeclareMathOperator{\res}{res}					% Residue
+\DeclareMathOperator{\coker}{coker}				% Cokernel (\ker is already defined)
+\DeclareMathOperator{\im}{im}					% Image
+\DeclareMathOperator{\coim}{coim}			    % Coimage
+\DeclareMathOperator{\tr}{tr}					% Trace
+\DeclareMathOperator{\rk}{rk}					% Rank
+\DeclareMathOperator{\Hom}{Hom}					% Homomorphisms
+\DeclareMathOperator{\cl}{cl}					% Class map
+\DeclareMathOperator{\sheafHom}					% Sheaf of homomorphisms
+{
+    \mathscr{H}\text{\kern -5.2pt {\calligra\large om}}\,
+}
+\DeclareMathOperator{\codim}{codim}				% Codimension
+\DeclareMathOperator{\Sym}{Sym}					% Symmetric powers
+\DeclareMathOperator{\II}{I\!I}					% Second fundamental form
+\DeclareMathOperator{\Pfaff}{Pfaff}				% Pfaffian
+
+%% Delimiters
+\DeclarePairedDelimiter{\p}{\lparen}{\rparen}          % Parenthesis
+\DeclarePairedDelimiter{\set}{\lbrace}{\rbrace}        % Set
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}          % Absolute value
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}         % Norm
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle}         % Inner product, ideal
+\DeclarePairedDelimiter{\sqb}{\lbrack}{\rbrack}        % Square brackets
+\DeclarePairedDelimiter{\ssqb}{\llbracket}{\rrbracket} % Double brackets
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}         % Ceiling
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}      % Floor
+\DeclarePairedDelimiter{\tuple}{\langle}{\rangle}		% Tuple	
+
+
+%% Sets
+\newcommand{\N}{\mathbb{N}}    						% Natural numbers
+\newcommand{\Z}{\mathbb{Z}}    						% Integers
+\newcommand{\Q}{\mathbb{Q}}    						% Rational numbers
+\newcommand{\R}{\mathbb{R}}    						% Real numbers
+\newcommand{\C}{\mathbb{C}}    						% Complex numbers
+\newcommand{\A}{\mathbb{A}}    						% Affine space
+\renewcommand{\P}{\mathbb{P}}  						% Projective space
+%Additions (S. Gammelgaard)
+\renewcommand{\H}{\mathbb{H}}						% Hyperbolic space, or half-plane
+\newcommand{\D}{\mathbb{D}} 						% Unit disk
+\newcommand{\F}{\mathbb{F}} 						% Field
+\newcommand{\bP}[1]{\mathbf{P}\!\left(#1\right)}	% Projectivisation of bundles
+
+%% Special groups and Lie groups
+\newcommand{\GL}{\mathbf{GL}}						% General linear group
+\newcommand{\PGL}{\mathbf{PGL}}						% Projective linear group
+\newcommand{\SL}{\mathbf{SL}}						% Special linear group
+
+%% Lie algebras
+\newcommand{\lalg}[1]{{\normalfont\mathfrak{#1}}}	% General for Lie algebras
+\newcommand{\gl}{\lalg{gl}}							% General linear algebra
+%\newcommand{\sl}{\lalg{sl}}							% Special linear algebra
+
+%% Cones of cycles on varieties and related objects
+\newcommand{\NS}{\mathrm{NS}}						% Neron-Severi group
+\newcommand{\Nef}{\mathrm{Nef}}						% Nef cone
+\newcommand{\NE}{\mathrm{NE}}						% Cone of curves
+\newcommand{\Eff}{\mathrm{Eff}}						% Effective cone
+\newcommand{\Pseff}{\mathrm{PSeff}}					% Pseudoeffective cone
+
+%% Categories
+\newcommand{\cat}[1]{{\normalfont\mathsf{#1}}}	% General for categories
+\newcommand{\Cat}{\cat{Cat}}					% Category of categories
+\newcommand{\Sch}{\cat{Sch}}					% Schemes
+\newcommand{\Aff}{\cat{Aff}}					% Affine schemes
+\newcommand{\Set}{\cat{Set}}					% Sets
+\newcommand{\Grp}{\cat{Grp}}					% Groups
+\newcommand{\AbGrp}{\cat{AbGrp}}				% AbGroups
+\newcommand{\Ab}{\cat{Ab}}      				% AbGroups
+\newcommand{\Ring}{\cat{Ring}}					% Rings
+\newcommand{\Mod}{\cat{Mod}}				    % R-Modules
+\newcommand{\Top}{\cat{Top}}					% Topological spaces
+\newcommand{\SMan}{\cat{Man}^\infty}			% Smooth manifolds
+\newcommand{\Coh}[1]{\cat{Coh}({#1})}			% Coherent sheaves
+\newcommand{\QCoh}[1]{\cat{QCoh}({#1})}			% Quasi-coherent sheaves
+\newcommand{\Fun}{\cat{Fun}}					% Category of functors
+\newcommand{\PreSh}{\cat{PreSh}}			    % Category of presheaves
+\newcommand{\Sh}{\cat{Sh}}			            % Category of presheaves
+
+%% Miscellaneous mathematics
+\newcommand{\ol}[1]{\overline{#1}}							% Overline
+\newcommand{\Dirsum}{\bigoplus}								% Direct sum
+\newcommand{\shf}[1]{\mathscr{#1}}							% Sheaf
+\newcommand{\OO}{\mathcal{O}}								% Structure sheaf
+\DeclareMathOperator{\id}{id}								% Identity
+\newcommand{\tens}[1]{\otimes_{#1}}							% Tensor product
+\newcommand{\normal}{\vartriangleleft}						% Normal subgroup, ideal of ring or Lie algebra
+\newcommand{\lamron}{\vartriangleright}						% The opposite of above
+\newcommand{\dvol}{d\operatorname{vol}}						% Volume form on a KÃ€hler manifold
+\newcommand{\cha}{\operatorname{char}}						% Characteristic of a field
+\newcommand{\Hilb}{\operatorname{Hilb}}						% Hilbert scheme
+\newcommand{\isoto}{\xrightarrow{\sim}}						% Isomorphism
+\newcommand{\injto}{\xhookrightarrow{}}						% Injective map
+\newcommand{\ratto}{\dashrightarrow}						% Rational map
+\newcommand{\rateq}{\overset{\sim}{\ratto}}					% Rational equivalence
+\newcommand{\Bl}[2]{\operatorname{Bl}_{#2} #1}				% Blow-up of #1 along #2
+%\newcommand{\Bl}[2]{#1\kern -2pt \uparrow_{#2}}			% 	(alternativ som ingen andre liker, buhu)
+\newcommand{\fracpart}[2]{\frac{\partial #1}{\partial #2}}	% Partial derivative
+\renewcommand{\setminus}{\smallsetminus}
+\newcommand{\transp}[1]{{}^t#1}								% transposed map, Voisin-style
+\newcommand{\dual}{{}^\vee}									% dual of map, vector bundle, sheaf, etc...
+\newcommand{\littletilde}{\tilde}							% for the next
+\renewcommand{\tilde}{\widetilde}
+\newcommand{\Spe}{\text{Sp\'e}}						        % Etale space
+\newcommand{\colim}{\text{colim}}						    % Colimit
+\newcommand{\supp}{\text{supp}}						        % Support
+\newcommand{\rad}{\text{rad}}						        % Radical of an ideal
+\newcommand{\Ann}{\text{Ann}}						        % Annihilator
+\newcommand{\Frac}{\text{Frac}}						        % Field of fractions
+
+%%\newcommand{\dual}{{}^{\smash{\scalebox{.7}[1.4]{\rotatebox{90}{\guilsinglleft}}}}}	% Dual of sheaf/vector space et cetera
+
+%% Miscellaneous, not-strictly-mathematical
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
+\newcommand{\ie}{\leavevmode\unskip, i.e.,\xspace}
+\newcommand{\eg}{\leavevmode\unskip, e.g.,\xspace}
+%\newcommand{\wlog}{\leavevmode\unskip without loss of generality \xspace}
+\newcommand{\dash}{\textthreequartersemdash\xspace}
+\newcommand{\TikZ}{Ti\textit{k}Z\xspace}
+\newcommand{\matlab}{\textsc{Matlab}\xspace}
+

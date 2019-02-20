@@ -1,0 +1,178 @@
+\documentclass{memoir}
+
+\input{header}
+\title{Local fields}
+\author{Emile T. Okada}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\chapter{Discrete valuation rings and Dedekind domains}
+\section{Preliminaries}
+\begin{thm}
+    \label{thm:int_dep}
+    Let $S\subseteq R$ be rings and $x\in R$.
+    The following are equivalent:
+    \begin{enumerate}
+        \item $x$ is integral over $S$
+        \item $S[x]$ is a finite $S$-algebra
+        \item $S[x]$ is contained ina subring $T\subseteq R$ that is a finite $S$-alg
+        \item There is an $S[x]$-module $M$ such that $\Ann_{S[x]}(M) = 0$ and $M$ is finitely generated as a $S$-module.
+    \end{enumerate}
+\end{thm}
+\begin{lemma}
+    Let $S\subseteq R$ be an integral extension of rings. 
+    Let $Q\normal R$ be a prime ideal, and set $P = Q\cap S$.
+    Then $Q$ is maximal in $R$ iff $P$ is maximal in $S$.
+\end{lemma}
+\begin{lemma}
+    (Incomparability).
+    Let $S\subseteq R$ be an integral extension of rings.
+    Let $Q,Q'\normal R$ be prime ideals with $Q\subseteq Q'$ and $Q\cap S = Q'\cap S$. 
+    Then $Q = Q'$.
+\end{lemma}
+\begin{lemma}
+    (Lying over).
+    Let $S\subseteq R$ be an integral extension of rings.
+    Let $P\normal S$ be prime.
+    Then there exists a prime $Q\normal R$ such that $Q\cap S = P$.
+\end{lemma}
+\begin{thm}
+    \label{thm:going_up}
+    (Going up).
+    Let $S\subseteq R$ be an integral extension of rings.
+    Let $P_1\subseteq P_2\subseteq \cdots \subseteq P_n$ be a chain of primes in $S$ and $Q_1\subseteq Q_2\subseteq \cdots \subseteq Q_m$ with $0\le m < n$ be a chain of primes in $R$ with $Q_i\cap S = P_i$.
+    Then the chain can be extended to $Q_1\subseteq Q_2\subseteq \cdots \subseteq Q_n$ with $Q_i\cap S = P_i$.
+\end{thm}
+\begin{thm}
+    \label{thm:going_down}
+    (Going down).
+    Let $S\subseteq R$ be an integral extension of domains such that $S$ is normal.
+    Let $P_1\supseteq P_2\supseteq \cdots \supseteq P_n$ be a chain of primes in $S$ and $Q_1\supseteq Q_2\supseteq \cdots \supseteq Q_m$ with $0\le m < n$ be a chain of primes in $R$ with $Q_i\cap S = P_i$.
+    Then the chain can be extended to $Q_1\supseteq Q_2\supseteq \cdots \supseteq Q_n$ with $Q_i\cap S = P_i$.
+\end{thm}
+\begin{thm}
+    \label{thm:noeth_loc_ring}
+    Let $R$ be a Noetherian local ring with maximal ideal $\mathfrak m$.
+    Then $\cap_n\mathfrak m^n = 0$.
+\end{thm}
+\section{Discrete valuation rings}
+\begin{definition}
+    Let $K$ be a field.
+    A \textit{discrete valuation} on $K$ is a surjective function $v:K\to \Z\cup\{\infty\}$ satisfying
+    \begin{enumerate}
+        \item $v(x) = \infty$ iff $x=0$
+        \item $v(xy) = v(x) + v(y)$ 
+        \item $v(x+y) \ge \inf(v(x),v(y))$.
+    \end{enumerate}
+    If $(K,v)$ is a field with a discrete valuation then $R = \{x\in K: v(x) \ge 0\}$ is a subring of $K$ called the valuation ring of $v$.
+\end{definition}
+\begin{definition}
+    A domain $R$ is called a \textit{discrete valuation ring} if there is a valuation $v$ on $K=\text{Frac}(R)$ for which $R$ is the valuation ring.
+\end{definition}
+\begin{lemma}
+    Any DVR is a Noetherian local domain of Krull dimension 1.
+\end{lemma}
+\begin{proof}
+    Let $t\in R$ be such that $v(t) = 1$.
+    Then all the ideals of $R$ are in the chain 
+    \begin{equation}
+        R \supsetneq (t) \supsetneq (t^2) \supsetneq (t^3) \supsetneq \cdots \supseteq 0.
+    \end{equation}
+\end{proof}
+\begin{thm}
+    Let $R$ be a Noetherian local domain with Krull dimenstion 1 and maximal ideal $\mathfrak m$.
+    The following are equivalent
+    \begin{enumerate}
+        \item $R$ is a DVR
+        \item $\mathfrak m$ is principal
+        \item $R$ is normal.
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    From the conditions on $R$ we know the only prime ideals are $0$ and $\mathfrak m$.
+
+    $(1)\Rightarrow (3)$ Let $x\in K = \text{Frac}(R)$ and suppose it is integral over $R$.
+    Then there are $a_0,\dots,a_{n-1}\in R$ such that $x^n+a_{n-1}x^{n-1}+\cdots a_1x+a_0 = 0$.
+    Suppose that $v(x)<0$. Then 
+    \begin{equation}
+        nv(x) = v(x^n) \ge \inf(v(a_ix^i)) \ge (n-1)v(x)
+    \end{equation}
+    and so $v(x)\ge0$ which is a contradiction and so $v(x)\ge0$ and hence $x\in r$.
+
+    $(3)\Rightarrow (2)$ Let $0\ne x\in \mathfrak m$. Then $\rad((x)) = \mathfrak m$ and so since $R$ is Noetherian there is an $n\in \mathbb N$ such that $\mathfrak m^n\subseteq (x) \subseteq \mathfrak m$. Let $n$ be minimal with this property. 
+    \begin{remark}
+        Morally we now have $(x) = \mathfrak m^n$.
+    \end{remark}
+    Let $y \in \mathfrak m^{n-1}$ be such that $y\not\in (x)$.
+    Set $z = x/y\in K$.
+    Then $z^{-1}\not\in R$ so $z^{-1}$ is not integral over $R$.
+    But this means that $z^{-1}\mathfrak m\nsubseteq \mathfrak m$ my theorem \ref{thm:int_dep}.
+    But $y\mathfrak m\subset (x)$ and so $z^{-1}\mathfrak m\subseteq R$ and hence $z^{-1}\mathfrak m = R$  and so $\mathfrak m = (z)$.
+
+    $(2)\Rightarrow (1)$ Define obvious valuation. 
+\end{proof}
+\begin{proposition}
+    $R$ is a DVR iff it is a Noetherian local ring and its maximal ideal is generated by a non-nilpotent element $\pi$.
+\end{proposition}
+\begin{proof}
+    By theorem \ref{thm:noeth_loc_ring} every element in $R$ can be written as $\pi^nu$ for $u$ a unit and $n\in \N_0$.
+    It follows that $R$ must be an integral domain, and so this expression is unique.
+    Setting $v(\pi^nu) = n$ one can easily check that this defines valuation on $\Frac(R)$ with valuation ring $R$.
+\end{proof}
+\section{Dedekind domains}
+\begin{definition}
+    A \textit{Dedekind domain} is a normal Noetherian domain of Krull dimension 1.
+\end{definition}
+\begin{lemma}
+    Let $R$ be a Noetherian domain of Krull dimension 1.
+    Then $R$ is a Dedekind domain iff every local ring $R_{\mathfrak p}$ for $\mathfrak p \ne 0$ is a DVR.
+\end{lemma}
+\begin{definition}
+    Let $R$ be a Dedekind domain with $K=\Frac(R)$.
+    We call an $R$-submodule of $K$ a fractional ideal if it is finitely generated as an $R$-module.
+\end{definition}
+\begin{remark}
+    One can define the product of fractional ideals in the obvious way.
+    Then the products of fractional ideals are fractional ideals.
+\end{remark}
+\begin{proposition}
+    Let $R$ be a Dedekind domain. 
+    Then all fractional ideals are invertible.
+\end{proposition}
+\subsection{Examples}
+\subsubsection{PIDs}
+\begin{thm}
+    Let $R$ be a PID. Then $R$ is a Dedekind domain.
+\end{thm}
+\begin{proof}
+    Certainly Noetherian.
+    Also clearly has Krull dimension 1.
+    Finally, $R_{\mathfrak p}$ is a local PID and hence a DVR for all $0\ne \mathfrak p\normal R$.
+\end{proof}
+\subsubsection{Rings of integers}
+\begin{thm}
+    Let $K/\Q$ be a number field and $\mathcal O_K$ its ring of algebraic integers.
+    Then $\mathcal O_K$ is a Dedekind domain.
+\end{thm}
+\begin{proof}
+    If $\alpha \in \Frac(\mathcal O_K) = K$ is integral over $\mathcal O_K$ then it is integral over $\Z$ and so lies in $\mathcal O_K$.
+    Thus $\mathcal O_K$ is normal.
+    To see that $\mathcal O_K$ is Noetherian note that it is finite over $\Z$ and hence Noetherian.
+    Finally, $\mathcal O_K$ has Krull dimension 1 since it is integral over $\Z$ and $\Z$ has Krull dimension 1.
+\end{proof}
+\subsubsection{Coordinate rings}
+\begin{thm}
+    Let $V$ be an affine variety defined over an algebraically closed field $k$.
+    Then $k[V]$ is a Dedekind domain iff $V$ is non-singular, irreducible and of dimension $1$.
+\end{thm}
+\begin{proof}
+    $k[V]$ is always Noetherian.
+    $V$ is irreducible iff $k[V]$ is a domain.
+    $V$ is of dimension 1 iff $k[V]$ has Krull dimension 1.
+
+    Now suppose $k[V]$ is a Dedekind domain. Then we know that all the local rings are normal Noetherian local domains  i.e. DVRs and hence $V$ must be non-singular.
+    Conversely, suppose $V$ is non-singular. Then all the local rings of $k[V]$ are DVRs and so $k[V]$ is a Dedekind domain.
+\end{proof}
+\end{document}
+
