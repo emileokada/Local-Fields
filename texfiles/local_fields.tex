@@ -8,54 +8,6 @@
 \maketitle
 \tableofcontents
 \chapter{Discrete valuation rings and Dedekind domains}
-\section{Preliminaries}
-\begin{thm}
-    \label{thm:int_dep}
-    Let $S\subseteq R$ be rings and $x\in R$.
-    The following are equivalent:
-    \begin{enumerate}
-        \item $x$ is integral over $S$
-        \item $S[x]$ is a finite $S$-algebra
-        \item $S[x]$ is contained ina subring $T\subseteq R$ that is a finite $S$-alg
-        \item There is an $S[x]$-module $M$ such that $\Ann_{S[x]}(M) = 0$ and $M$ is finitely generated as a $S$-module.
-    \end{enumerate}
-\end{thm}
-\begin{lemma}
-    Let $S\subseteq R$ be an integral extension of rings. 
-    Let $Q\normal R$ be a prime ideal, and set $P = Q\cap S$.
-    Then $Q$ is maximal in $R$ iff $P$ is maximal in $S$.
-\end{lemma}
-\begin{lemma}
-    (Incomparability).
-    Let $S\subseteq R$ be an integral extension of rings.
-    Let $Q,Q'\normal R$ be prime ideals with $Q\subseteq Q'$ and $Q\cap S = Q'\cap S$. 
-    Then $Q = Q'$.
-\end{lemma}
-\begin{lemma}
-    (Lying over).
-    Let $S\subseteq R$ be an integral extension of rings.
-    Let $P\normal S$ be prime.
-    Then there exists a prime $Q\normal R$ such that $Q\cap S = P$.
-\end{lemma}
-\begin{thm}
-    \label{thm:going_up}
-    (Going up).
-    Let $S\subseteq R$ be an integral extension of rings.
-    Let $P_1\subseteq P_2\subseteq \cdots \subseteq P_n$ be a chain of primes in $S$ and $Q_1\subseteq Q_2\subseteq \cdots \subseteq Q_m$ with $0\le m < n$ be a chain of primes in $R$ with $Q_i\cap S = P_i$.
-    Then the chain can be extended to $Q_1\subseteq Q_2\subseteq \cdots \subseteq Q_n$ with $Q_i\cap S = P_i$.
-\end{thm}
-\begin{thm}
-    \label{thm:going_down}
-    (Going down).
-    Let $S\subseteq R$ be an integral extension of domains such that $S$ is normal.
-    Let $P_1\supseteq P_2\supseteq \cdots \supseteq P_n$ be a chain of primes in $S$ and $Q_1\supseteq Q_2\supseteq \cdots \supseteq Q_m$ with $0\le m < n$ be a chain of primes in $R$ with $Q_i\cap S = P_i$.
-    Then the chain can be extended to $Q_1\supseteq Q_2\supseteq \cdots \supseteq Q_n$ with $Q_i\cap S = P_i$.
-\end{thm}
-\begin{thm}
-    \label{thm:noeth_loc_ring}
-    Let $R$ be a Noetherian local ring with maximal ideal $\mathfrak m$.
-    Then $\cap_n\mathfrak m^n = 0$.
-\end{thm}
 \section{Discrete valuation rings}
 \begin{definition}
     Let $K$ be a field.
@@ -120,6 +72,10 @@
     It follows that $R$ must be an integral domain, and so this expression is unique.
     Setting $v(\pi^nu) = n$ one can easily check that this defines valuation on $\Frac(R)$ with valuation ring $R$.
 \end{proof}
+\subsubsection{Summary of useful properties of DVRs}
+\begin{enumerate}
+    \item If $a,b\in K = \Frac(R)$ have $\nu(a) \ne \nu (b)$ then $\nu(a+b) = \min(\nu(a),\nu(b))$.
+\end{enumerate}
 \section{Dedekind domains}
 \begin{definition}
     A \textit{Dedekind domain} is a normal Noetherian domain of Krull dimension 1.
@@ -128,18 +84,6 @@
     Let $R$ be a Noetherian domain of Krull dimension 1.
     Then $R$ is a Dedekind domain iff every local ring $R_{\mathfrak p}$ for $\mathfrak p \ne 0$ is a DVR.
 \end{lemma}
-\begin{definition}
-    Let $R$ be a Dedekind domain with $K=\Frac(R)$.
-    We call an $R$-submodule of $K$ a fractional ideal if it is finitely generated as an $R$-module.
-\end{definition}
-\begin{remark}
-    One can define the product of fractional ideals in the obvious way.
-    Then the products of fractional ideals are fractional ideals.
-\end{remark}
-\begin{proposition}
-    Let $R$ be a Dedekind domain. 
-    Then all fractional ideals are invertible.
-\end{proposition}
 \subsection{Examples}
 \subsubsection{PIDs}
 \begin{thm}
@@ -173,6 +117,533 @@
 
     Now suppose $k[V]$ is a Dedekind domain. Then we know that all the local rings are normal Noetherian local domains  i.e. DVRs and hence $V$ must be non-singular.
     Conversely, suppose $V$ is non-singular. Then all the local rings of $k[V]$ are DVRs and so $k[V]$ is a Dedekind domain.
+\end{proof}
+\subsection{Properties of Dedekind domains}
+\begin{enumerate}
+    \item Consider $\Spec(R)$ where $R$ is a Dedekind domain.
+    Then $\Spec(R)$ consists of closed points and a generic point.
+    \item For any prime ideal $\mathfrak p\normal R$, we have natural inclusions $R\subseteq R_{\mathfrak p} \subseteq K = \Frac(R)$.
+    \item If we interpret $K$ as the rational functions on $\Spec(R)$, then $\nu_{\mathfrak p}(k)$ is the degree of the pole/zero of $k$ at the point $\mathfrak p$.
+        Rational functions on $\Spec(R)$ have finitely many zeros/poles.
+    \item $\mathfrak p = R\cap (\mathfrak p R_{\mathfrak p})$.
+    Thus for $r\in R$, $r\in \mathfrak p$ iff $\nu_{\mathfrak p}(r)\ge 1$.
+    \item An element $k\in K$ is in $R$ iff $\nu_{\mathfrak p}(k)\ge 0$ for all $\mathfrak p\in\Spec(R)$.
+\end{enumerate}
+\subsubsection{Rigorous part}
+\begin{definition}
+    Let $R$ be a Dedekind domain with $K=\Frac(R)$.
+    We call an $R$-submodule of $K$ a fractional ideal if it is finitely generated as an $R$-module.
+\end{definition}
+\begin{remark}
+    One can define the product of fractional ideals in the obvious way.
+    Then the products of fractional ideals are fractional ideals.
+\end{remark}
+\begin{lemma}
+    \label{lemma:frac_DVR}
+    Let $R$ be a DVR with uniformising element $\pi$. 
+    Then all the non-zero fractional ideals of $R$ are of the form $\pi^nR$ for $n\in \Z$.
+\end{lemma}
+\begin{proof}
+    Elements in $K = \Frac(R)$ can uniquely be written in the form $\pi^nu$ for $n\in\Z,u\in R^\times$.
+    The fact that fractional ideals are finitely generated ensures that they have an element with minimal valuation.
+    The result follows.
+\end{proof}
+\begin{thm}
+    Let $R$ be a Dedekind domain. 
+    Then all non-zero fractional ideals are invertible.
+\end{thm}
+\begin{proof}
+    Let $0\ne \mathfrak a$ be a fractional ideal of $R$ and $\mathfrak a' = (R:\mathfrak a)$.
+    It suffices to show that $\mathfrak a . \mathfrak a' = R$.
+    But by lemma \ref{lemma:frac_DVR}, we have $\mathfrak a_{\mathfrak p} \mathfrak a'_{\mathfrak p} = R_{\mathfrak p}$ for all prime ideals $0\ne \mathfrak p \normal R$.
+    If $\mathfrak p = 0$ then $\mathfrak a_{\mathfrak p} \mathfrak a'_{\mathfrak p} = R_{\mathfrak p}$ holds by inspection.
+    But $\mathfrak a . \mathfrak a' \subseteq R$ always holds and so we must have equality.
+\end{proof}
+\begin{corollary}
+    The set of non-zero fraction ideals of $R$ form a group under multiplication.
+\end{corollary}
+\begin{remark}
+    Note that $(R:xR) = x^{-1}R$.
+\end{remark}
+\begin{lemma}
+    \label{lemma:DCC}
+    Let $x\in R\backslash 0$. Then the set of ideals containing $x$ satisfy the descending chain condition.
+\end{lemma}
+\begin{proof}
+    Let $R\supseteq \mathfrak a_1\supseteq \mathfrak a_2 \supseteq \cdots \supseteq xR$.
+    Then $xR \subseteq x\mathfrak a_1^{-1} \subseteq x\mathfrak a_2^{-1} \subseteq \cdots \subseteq R$.
+    The result now follows from the fact that $R$ is a Noetherian domain.
+\end{proof}
+\begin{proposition}
+    \label{prop:finite_prime}
+    Let $x\in R\backslash 0$. Then only finitely many prime ideals contain $x$.
+\end{proposition}
+\begin{proof}
+    Suppose $x\in \mathfrak p_1, \mathfrak p_2, \dots$.
+    By lemma \ref{lemma:DCC}, $\mathfrak p_1\supseteq \mathfrak p_1\cap \mathfrak p_2 \supseteq \cdots$ must stabilise. 
+    Thus there is an $n$ such that $\mathfrak p_n \supseteq \cap_{i=1}^{n-1}\mathfrak p_i$.
+    But then there is an $i$ such that $1\le i < n$ and $\mathfrak p_n\supseteq \mathfrak p_i$.
+    Since $R$ has Krull dimension 1 this forces $\mathfrak p_n = \mathfrak p_i$ and so we obtain a contradition.
+\end{proof}
+\begin{corollary}
+    Let $\nu_{\mathfrak p}$ denote the valution on $K = \Frac(R)$ obtained from $R_{\mathfrak p}$ for $\mathfrak p \normal R$ a prime.
+    Then for $0\ne x\in K$, the numbers $\nu_{\mathfrak p}(x)$ are almost all $0$.
+\end{corollary}
+\begin{definition}
+    Let $\mathfrak a \normal R$ be a fractional ideal and let $\mathfrak p \normal R$ be a prime ideal. 
+    Then $\mathfrak a_{\mathfrak p} = (\mathfrak p R_{\mathfrak p})^n$ for some $n\in \Z$.
+    Define $\nu_{\mathfrak p}(\mathfrak a) = n$.
+\end{definition}
+\begin{remark}
+    It follows from proposition \ref{prop:finite_prime} that the numbers $\nu_{\mathfrak p}(\mathfrak a)$ are almost all $0$.
+\end{remark}
+\begin{thm}
+    Let $0\ne \mathfrak a$ be a fractional ideal.
+    Then
+    \begin{equation}
+        \mathfrak a = \prod_{\mathfrak p}\mathfrak p^{\nu_{\mathfrak p}(\mathfrak a)}.
+    \end{equation}
+\end{thm}
+\begin{proof}
+    Localise.
+\end{proof}
+\begin{lemma}
+    Let $n_1,\dots,n_k$ be integers, $x_1,\dots,x_k\in R$, and $\mathfrak p_1,\dots,\mathfrak p_k$ be distinct prime ideals of $R$.
+    Then there exists an $x\in R$ such the $\nu_{\mathfrak p_i}(x-x_i)\ge n_i$ for all $i$.
+\end{lemma}
+\begin{proof}
+    WLOG the $n_i\ge0$.
+    If $k=1$ the result is trivial.
+    Suppose $k\ge 2$.
+    Let $\mathfrak a = \mathfrak p_1^{n_1}+\mathfrak p_2^{n_2}\cdots\mathfrak p_k^{n_k}$.
+    Then $\nu_{\mathfrak p}(\mathfrak a) = 0$ for all $\mathfrak p$ and so $\mathfrak a = R$.
+    Thus we can write $x_1 = y_{(1)}+x_{(1)}$ with $y_{(1)}\in \mathfrak p_1^{n_1}$ and $x_{(1)}\in \mathfrak p_2^{n_2}\cdots\mathfrak p_k^{n_k}$.
+    It follows that $\nu_{\mathfrak p_1}(x_{(1)}-x_1) \ge n_1$ and $\nu_{\mathfrak p_i}(x_{(1)})\ge n_i$ for all $i\ne 1$.
+    If we define $x_{(i)}$ similarly and let $x = \sum_i x_{(i)}$ then we obtain $\nu_{\mathfrak p_i}(x-x_i) \ge n_i$ for all $i$.
+\end{proof}
+\begin{corollary}
+    Let $n_1,\dots,n_k$ be integers, $x_1,\dots,x_k\in K = \Frac(R)$, and $\mathfrak p_1,\dots,\mathfrak p_k$ be distinct prime ideals of $R$.
+    Then there exists an $x\in K$ such the $\nu_{\mathfrak p_i}(x-x_i)\ge n_i$ for all $i$, and $\nu_{\mathfrak q}(x)\ge 0$ for $\mathfrak q\ne \mathfrak p_1,\dots,\mathfrak p_k$.
+\end{corollary}
+\begin{proof}
+    Write $x_i = a_i/s$ for $a_i\in R$ and $0\ne s\in R$.
+    Let $a\in R$ be such that $\nu_{\mathfrak p_i}(a-a_i) \ge n_i+\nu_{\mathfrak p_i}(s)$ and $\nu_{\mathfrak q}(a) \ge \nu_{\mathfrak q}(s)$ for $\mathfrak q\ne\mathfrak p_1,\dots,\mathfrak p_k$.
+    Such an $a$ exists since there are only finitely many $\mathfrak q$ for which $\nu_{\mathfrak q}(s) > 0$.
+    Then $\nu_{\mathfrak p_i}(a/s-a_i/s) \ge n_i$ and $\nu_{\mathfrak q}(a/s)\ge0$ for all $\mathfrak q\ne\mathfrak p_1,\dots,\mathfrak p_k$.
+\end{proof}
+\begin{corollary}
+    Let $\mathfrak a$ be a fractional ideal of $R$. Then
+    \begin{equation}
+        \mathfrak a = \set{k\in K:\nu_{\mathfrak p}(k) \ge \nu_{\mathfrak p}(\mathfrak a)}.
+    \end{equation}
+\end{corollary}
+\begin{proof}
+    Let $I = \set{k\in K:\nu_{\mathfrak p}(k) \ge \nu_{\mathfrak p}(\mathfrak a)}$ and let $\mathfrak p\normal R$ be a prime ideal.
+    Then certainly $I_{\mathfrak p} \subseteq \mathfrak a_{\mathfrak p}$.
+    Now suppose $k\in \mf a_{\mf p}$.
+    To see that $k\in I_{\mf p}$ we must show that there exists an $r\in R\backslash \mf p$ such that $rk\in I$.
+
+    Let $r\in R$ be such that $\nu_{\mf q}(r) \ge \nu_{\mf q}(\mf a) - \nu_{\mf q}(k)$ for all $\mf q\ne \mf p$ and $\nu_{\mf p}(r-1)\ge 1$.
+    Such an $r$ exists because there are only finitely many $\mf q$ such that $\nu_{\mf q}(\mf a) - \nu_{\mf q}(k) \ne 0$.
+    Then $\nu_{\mf p}(r) = \nu_{\mf p}(r-1+1) = 0$ and so $r\in R\backslash \mf p$.
+    Moreover, since $k\in \mf a_{\mf p}$ we also have $\nu_{\mf p}(k)\ge \nu_{\mf p}(\mf a)$.
+    Therefore $\nu_{\mf q}(rk)\ge \nu_{\mf q}(\mf a)$ for all $\mf q$.
+    Thus $rk\in I$ and $r\in R\backslash \mf p$.
+\end{proof}
+\begin{corollary}
+    A Dedekind domain with only finitely many prime ideals is principal.
+\end{corollary}
+\begin{proof}
+    For every $\mf p\normal R$ there exists an $r\in R$ such that $\nu_{\mf q}(r) = \delta_{\mf p,\mf q}$.
+    It follows that $\mf p = (r)$.
+    Thus all the prime ideals are principal, and hence all ideals are principal (since all ideals are a product of prime ideals).
+\end{proof}
+\begin{remark}
+    To see why such a $r$ exists, note that there exists a $\pi\in R$ such that $\nu_{\mf p}(\pi) = 1$.
+    Then let $r$ be such that $\nu_{\mf p}(r-\pi)\ge 2$ and $\nu_{\mf q}(r-1) \ge 1$.
+\end{remark}
+\begin{corollary}
+    Let $\mf p_1,\dots,\mf p_k$ be prime ideals in $R$ and $n_1,\dots,n_k\in \Z$.
+    Then there exists a $x\in K := \Frac(R)$ such that $\nu_{\mf p_i}(x) = n_i$.
+\end{corollary}
+\begin{proof}
+    Follows from the previous remark.
+\end{proof}
+\begin{definition}
+    Let $\mf a,\mf b$ be fractional ideals of $R$. 
+    We say that $\mf a\mid \mf b$ if there is an ideal $\mf c$ of $R$ such that $\mf b = \mf a\mf c$.
+\end{definition}
+\begin{corollary}
+    Let $\mf a, \mf b$ be fractional ideals of $R$.
+    Then $\mf a\mid \mf b$ iff $\mf a\supseteq \mf b$.
+\end{corollary}
+\begin{proof}
+    $(\Rightarrow)$ Obvious.
+    $(\Leftarrow)$ $\mf a\supseteq \mf b$ implies that $\nu_{\mf p}(\mf b)\ge \nu_{\mf p}(\mf a)$ for all $\mf p$.
+    Thus $\nu_{\mf p}(\mf a^{-1}\mf b)\ge 0$ for all $\mf p$ and so is an ideal of $R$.
+\end{proof}
+\section{Extensions}
+\begin{notation}
+    Let $K$ be a field and $L$ a finite extension of $K$.
+    Write $n$ for $\abs{L:K}$.
+    Let $A$ denote a Noetherian domain with $\Frac(A) = K$.
+    We denote by $B$ the integral closure of $A$ in $L$.
+    Note that if we let $S = A^\times$, then $B[S^{-1}] = B.K$ is the integral closure of $K$ in $L$ i.e. the whole of $L$.
+    We say that $(F)$ is satisfied if $B$ is a finitely generated $A$-module.
+\end{notation}
+\begin{proposition}
+    Suppose hypothesis $(F)$ is satisfied.
+    If $A$ is Dedekind then $B$ is Dedekind.
+\end{proposition}
+\begin{proof}
+    It is clear that $B$ is Noetherian and normal.
+    By the going up theorem $\dim(B) = \dim(A) = 1$ and so $B$ is Dedekind.
+\end{proof}
+\begin{definition}
+    Suppose hypothesis $(F)$ is satisfied.
+    Let $\mf B$ be a non-zero prime ideal of $B$.
+    If $\mf p = \mf B \cap A$ then we say that $\mf B$ divides $\mf p$.
+    This is a good definition because $\mf B$ divides $\mf p$ iff $\mf B$ divides $\mf pB$.
+    We define $e_{\mf B} = \nu_{\mf B}(\mf pB)$ and call it the ramification index of $\mf B$ in the extension $L/K$.
+    Note that 
+    \begin{equation}
+        \mf pB = \prod_{\mf B\mid \mf p}\mf B^{e_{\mf B}}.
+    \end{equation}
+
+    If $\mf B$ divides $\mf p$ then note that $B/\mf B$ is a field extension of $A/\mf p$.
+    We call the degree of the extension $f_{\mf B}$.
+    This number is finite as $B$ is finitely generated over $A$.
+    When there is only one prime ideal $\mf B$ dividing $\mf p$ and $f_{\mf b} = 1$ we say that $L/K$ is \textit{totally ramified} at $\mf p$.
+\end{definition}
+\begin{thm}
+    Suppose hypothesis $(F)$ is satisfied.
+    Let $\mf p$  be a non-zero prime ideal of $A$. 
+    The ring $B/\mf pB$ is a $A/\mf p$-algebra of degree $n$ isomorphic to $\prod_{\mf B\mid \mf p}B/\mf B^{e_{\mf B}}$.
+    Moreover 
+    \begin{equation}
+        n = \sum_{\mf B\mid \mf p}e_{\mf B}f_{\mf B}.
+    \end{equation}
+\end{thm}
+\begin{proof}
+    The isomorphism follows from the Chinese remainder theorem.
+    Note that $A\cap \mf pB = \mf p$ and so $A/\mf p\hookrightarrow B/\mf pB$.
+    It follows from \ref{prop:q_dim} that the dimension of $B/\mf pB$ as an $A/\mf p$ vector space is $\sum_{\mf B\mid \mf p}e_{\mf B}f_{\mf B}$.
+    It remains to show that this number is $n$.
+    Let $S = A\backslash \mf p$ and write $A' = A[S^{-1}]$ and $B' = B[S^{-1}]$.
+    We have that $A/\mf pA \cong A'/\mf pA'$.
+    To see that $B'/\mf pB'$ note that $S$ maps to $(A/\mf p)^\times$ in $B/\mf pB$.
+    By proposition \ref{prop:DVR_closure}, $B'$ is a free $A'$ module of rank $n$.
+    It follows that $B/\mf pB \cong B\otimes_AA/\mf p$ is a dimension $n$ $A/\mf p$ vector space.
+\end{proof}
+\begin{remark}
+    Let $\mf B\mid \mf p$ and $x\in K$.
+    Then $\nu_{\mf B}(x) = e_{\mf B}\nu_{\mf p}(x)$.
+    This follows from the fact that $\nu_{\mf B}(x) = \nu_{\mf B}(xB)$ and $\nu_{\mf p}(x) = \nu_{\mf p}(xA)$.
+    We say that the valuation $\nu_{\mf B}$ prolongs or extends $\nu_{\mf p}$ with index $e_{\mf B}$.
+\end{remark}
+\begin{proposition}
+    Let $w$ be a discrete valuation on $L$ extending $\nu_{\mf p}$ with index $e$.
+    Then there is a prime divisor $\mf B$ of $\mf p$ with $w = \nu_{\mf B}$ and $e = e_{\mf B}$.
+\end{proposition}
+\begin{proof}
+    Let $W$ be the ring of $w$ and $\mf q$ its maximal ideal.
+    Since $w$ extends $\nu_{\mf p}$, $A\subseteq W$.
+    Since $W$ is integrally closed in $L$, $B\subseteq W$.
+    Let $\mf B = \mf q \cap B$.
+    Then it is clear that $\mf B \cap A = \mf p$ and so $\mf B$ divides $\mf p$.
+    Moreover $B_{\mf B}\subseteq W$.
+    But $B_{\mf B}$ is a maximal subring of $L$ and so $W = B_{\mf B}$.
+    Thus $w = \nu_{\mf B}$ and $e = e_{\mf B}$.
+\end{proof}
+\subsection{Hypthesis (F)}
+\begin{proposition}
+    Hypothesis $(F)$ is satisfied if $L/K$ is a separable extension.
+\end{proposition}
+\begin{proof}
+    $\Tr:L\to K$ gives rise to a symmetric non-degenerate $K$-bilinear form on $L$ by composing it with the mulitplication map.
+    Note that if $x\in B$ then $\Tr(x)\in A$ by integrality considerations.
+
+    Now let $\set{e_i}_i$ be a basis of $L$ over $K$ with the $e_i\in B$ (this exists because $B.K = L$) and let $V$ be the free $A$-module spanned by the $e_i$'s.
+    For every $A$-submodule $M$ of $L$, define 
+    \begin{equation}
+        M^* = \set{x\in L: \Tr(xy)\in A\ \forall y\in M}.
+    \end{equation}
+    Clearly $V\subseteq B \subseteq B^* \subseteq V^*$.
+    Since $A$ is Noetherian it thus suffices to show that $V^*$ is a finitely generated $A$-module.
+    Let $\set{f_i}$ be the dual basis of $\set{e_i}$ with respect to $\Tr$.
+    Then it is clear that $V^*$ is the free $A$-module generated by the $f_i$.
+    This completes the proof.
+\end{proof}
+\section{Norm and Inclusion}
+\begin{definition}
+    Let $A,B$ be as in the previous section and write $I_A,I_B$ for their respective ideal groups.
+    Define the homomorphisms $i:I_A\to I_B, N:I_B\to I_A$ by $i(\mf p) = \mf p B = \prod_{\mf B\mid \mf p}\mf B^{e_{\mf B}}$ and $N(\mf B) = \mf p^{f_{\mf B}}$ where $\mf B\mid \mf p$ and extend linearly.
+\end{definition}
+\subsection{Grothendieck Ring}
+\begin{proposition}
+    Let $\mf a$ be a fractional ideal of $A$ and $\mf p\normal A$ a non-zero prime ideal of $A$.
+    Then $\mf a/\mf p\mf a \cong A/\mf p$ as $A$-modules.
+\end{proposition}
+\begin{proof}
+    Write $\mf a = \prod_{i = 1}^n\mf p_i^{a_i}$ and wlog $\mf p = \mf p_1$.
+    Let $x\in K:= \Frac(A)$ be such that $\nu_{\mf p_i}(x) = a_i$.
+    Then $x\in \mf a\backslash \mf p \mf a$.
+    Now define the map $A\to \mf a/\mf p\mf a$ by $r\mapsto rx$.
+    It clearly descends to $A/\mf p$ and so we obtain a map $\phi:A/\mf p\to \mf a/\mf p\mf a$.
+    Since $\mf p$ is maximal the kernel must be trivial.
+    For surjectivity note that $\mf p\mf a\subsetneq \mf p\mf a+ Ax \subseteq \mf a$ and so by looking at the prime factorisation we must have $\mf p \mf a + Ax = \mf a$.
+\end{proof}
+\begin{definition}
+    Let $\mathcal C_A$ be the category of $A$-modules of finite length.
+    This is an abelian category so let $R(\mathcal C_A)$ denote the Grothendieck group of $\mathcal C_A$.
+
+    If $M\in \mathcal C_A$ we have a composition series $0=M_0\subseteq M_1\subseteq \cdots\subseteq M_m = M$.
+    The quotients $M_i/M_{i-1}$ are isomorphic to $A/\mf p_i$ for some $\mf p_i$ a non-zero prime ideal of $A$.
+    Define $\chi_A(M) = \prod_i\mf p_i \in I_A$.
+    This is well defined by the Jordan-Holder theorem.
+    Moreover it is clear that $\chi_A:(R(\mathcal C_A),+) \to I_A$ is a homomorphism.
+\end{definition}
+\begin{proposition}
+    Let $\mf a\subseteq \mf b$ be fractional ideals of $A$.
+    Then $\chi_A(\mf b/\mf a) = \mf a\cdot \mf b^{-1}$.
+    In particular $\chi_A(A/\mf a) = \mf a$ for ideals $\mf a\normal A$.
+\end{proposition}
+\begin{proof}
+    Take the obvious composition series.
+\end{proof}
+\begin{corollary}
+    $\chi_A$ is an isomorphism.
+\end{corollary}
+\begin{remark}
+    Note that $\mathcal C_B$ naturally includes into $\mathcal C_A$.
+\end{remark}
+\begin{proposition}
+    Let $M\in \mathcal C_B$. 
+    Then $\chi_A(M) = N(\chi_B(M))$.
+    In other words
+    \begin{equation}
+        \begin{tikzcd}
+            I_B \arrow[r,"N"] & I_A \\
+            R(\mathcal C_B) \arrow[r] \arrow[u,"\chi_B"] & R(\mathcal C_A) \arrow[u,"\chi_A"]
+        \end{tikzcd}
+    \end{equation}
+    commutes.
+\end{proposition}
+\begin{remark}
+    Tensoring by $B$ gives a functor $\otimes_AB: \mathcal C_A\to \mathcal C_B$.
+\end{remark}
+\begin{proposition}
+    $\otimes_AB$ is an exact functor.
+\end{proposition}
+\begin{proof}
+    Suffices to check locally. 
+    But $B_{\mf p}$ is a free $A_{\mf p}$-module.
+\end{proof}
+\begin{proposition}
+    The following diagram commutes
+    \begin{equation}
+        \begin{tikzcd}
+            I_A \arrow[r,"i"] & I_B \\
+            R(\mathcal C_A) \arrow[r,"R(\otimes_AB)"] \arrow[u,"\chi_A"] & R(\mathcal C_B). \arrow[u,"\chi_B"]
+        \end{tikzcd}
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    Suffices to check for $A/\mf p$.
+    But $i(\chi_A(A/\mf p)) = \mf pB = \chi_B(B/\mf pB)$.
+\end{proof}
+\begin{proposition}
+    Let $x\in L$.
+    Then $N(xB) = N_{L/K}(x)A$.
+\end{proposition}
+\section{Simple extensions}
+Let $A$ be a local ring with maximal ideal $\mf m$ and residue field $k$, $f\in A[x]$ and $B_f := A[x]/f$.
+We have
+\begin{equation}
+    \bar B_f := B_f/\mf mB_f \cong A[x]/(\mf m, f) \cong k[x]/(\bar f)
+\end{equation}
+where $\bar f$ is the reduction of $f$ to $k[x]$.
+Let $\bar f = \prod_i\phi_i^{e_i}$ be the decomposition of $\bar f$ into irreducibles, and for each $\phi$ pick a $g_i\in A[x]$ such that $\bar g_i = \phi_i$.
+Write $\mf m_i$ for the ideal in $B_f$ generated by $\mf m$ and the image of $g_i$ in $B_f$.
+\begin{proposition}
+    The ideals $\mf m_i$ are maximal and distint and are all the maximal ideals of $B_f$.
+    Moreover $B_f/\mf m_i \cong k_i := k[x]/(\phi_i)$.
+\end{proposition}
+\begin{proof}
+    $\mf m_i$ is the preimage of $(\phi_i)/(f)\normal \bar B_f$ in $B_f$.
+    Thus $B_f/\mf m_i \cong k_i$ and so the $\mf m_i$ are distinct and maximal.
+    To show that every maximal ideal is one of the $\mf m_i$ it suffices to show that if $\mf n$ is maximal it contains $\mf m$.
+    If not then $\mf m B_f+\mf n = B_f$ which would imply that $\mf n = B_f$ (by Nakayama) which is a contradiction.
+\end{proof}
+\subsection{Unramified case}
+Suppose $\bar f$ is irreducible and $A$ is a DVR.
+Then $B_f$ is a DVR with maximal ideal $\mf m B_f$ and residue field $k[x]/(\bar f)$.
+\section{Galois Extensions}
+Let $A,B$ be as before, but suppose additionally that $L/K$ is a Galois extension.
+Write $G(L/K)$ for the Galois gorup of the extension.
+\begin{proposition}
+    $G(L/K)$ acts transitively on the set of primes in $B$ dividing $\mf p\normal A$.
+\end{proposition}
+\begin{corollary}
+    Let $\mf p$ be a non-zero prime ideal of $A$.
+    Then integers $e_{\mf B}$ and $f_{\mf B}$ (for $\mf B\mid \mf p$) only depend on $\mf p$.
+    If we denote these numbers $e_{\mf p}, f_{\mf p}$, and $g_{\mf p}$ for the number of prime ideals in $B$ dividing $\mf p$ then $n = e_{\mf p}f_{\mf p}g_{\mf p}$.
+\end{corollary}
+\begin{definition}
+    Define $D_{\mf B}(L/K) = \stab_{G(L/K)}(\mf B)$.
+\end{definition}
+\chapter{Appendix - Commutative algebra results}
+\section{Prime ideals}
+\begin{lemma}
+    \label{lemma:prime_avoidance}
+    (Prime avoidance lemma).
+    Let $I\normal R$ be an ideal and let $P_1,\dots,P_k\normal R$ be prime ideals.
+    If $I \subseteq \cup_iP_i$ then there exists an $i$ such that $I\subseteq P_i$.
+\end{lemma}
+\section{Localisation}
+\begin{proposition}
+    Let $\mathfrak a,\mathfrak b \normal R$ be ideals and $\mathfrak p \normal R$ a prime ideal.
+    Then 
+    \begin{equation}
+        (1)\ (\mathfrak a + \mathfrak b)_{\mathfrak p} = \mathfrak a_{\mathfrak p} + \mathfrak b_{\mathfrak p}, \quad (2)\ (\mathfrak a . \mathfrak b)_{\mathfrak p} = \mathfrak a_{\mathfrak p} . \mathfrak b_{\mathfrak p}, \quad (3)\ (\mathfrak a : \mathfrak b)_{\mathfrak p} = (\mathfrak a_{\mathfrak p} : \mathfrak b_{\mathfrak p})
+    \end{equation}
+    where $(3)$ additionally requires $\mathfrak b$ to be finitely generated.
+\end{proposition}
+\begin{proof}
+    $(1)$ and $(2)$ are trivial.
+    For $(3)$ note that $(\subseteq)$ always holds.
+    Now suppose $\mathfrak b = (b_1,\dots,b_k)$.
+    If $r/s\in(\mathfrak a_{\mathfrak p}:\mathfrak b_{\mathfrak p})$ then so is $r/1$.
+    Thus we have $(r/1)(b_i/1)=a_i/s_i$ for some $a_i\in\mathfrak a,s_i\not\in\mathfrak p$.
+    Thus there is a $u_i\not\in\mathfrak p$ such that $(u_is_i)(rb_i)=u_ia_i\in\mathfrak a$.
+    Let $u = \prod_i(u_is_i)$.
+    Then $(ur)b_i\in\mathfrak a$ for all $i$.
+    Thus $ur\in (\mathfrak a:\mathfrak b)$ and so $r/1 = ur/u \in (\mathfrak a:\mathfrak b)_{\mathfrak p}$ and so $r/s$ is too.
+\end{proof}
+\begin{proposition}
+    Let $\mathfrak a,\mathfrak b$ be $R$-submodules of $K = \Frac(R)$ and $\mathfrak p \normal R$ a prime ideal.
+    Then 
+    \begin{equation}
+        (1)\ (\mathfrak a + \mathfrak b)_{\mathfrak p} = \mathfrak a_{\mathfrak p} + \mathfrak b_{\mathfrak p}, \quad (2)\ (\mathfrak a . \mathfrak b)_{\mathfrak p} = \mathfrak a_{\mathfrak p} . \mathfrak b_{\mathfrak p}, \quad (3)\ (\mathfrak a : \mathfrak b)_{\mathfrak p} = (\mathfrak a_{\mathfrak p} : \mathfrak b_{\mathfrak p})
+    \end{equation}
+    where $(3)$ additionally requires $\mathfrak b$ to be finitely generated and $(\mathfrak a:\mathfrak b) := \set{k\in K:k\mathfrak b \subseteq \mathfrak a}$.
+\end{proposition}
+\begin{proof}
+    First note that $\mathfrak a_{\mathfrak p} = \set{\frac1sk:s\in R\backslash\mathfrak p, k\in \mathfrak a}$.
+    Then $(1)$ and $(2)$ follow.
+    For $(3)$, $(\subseteq)$ always holds.
+    If $\mathfrak b$ is additionally finitely generated, let $k_1,\dots,k_n$ be its generators.
+    For $k\in (\mathfrak a_{\mathfrak p}:\mathfrak b_{\mathfrak p})$, we have that for each $i$ there are $a_i\in\mathfrak a, s_i\not\in\mathfrak p$ such that $kk_i = \frac1{s_i}a_i$.
+    Let $s = \prod_is_i$. Then $skk_i\in\mathfrak a$ for all $i$.
+    Thus $sk\in(\mathfrak a:\mathfrak b)$ and so $k\in(\mathfrak a:\mathfrak b)_{\mathfrak p}$.
+\end{proof}
+\section{Integrality}
+\begin{thm}
+    \label{thm:int_dep}
+    Let $S\subseteq R$ be rings and $x\in R$.
+    The following are equivalent:
+    \begin{enumerate}
+        \item $x$ is integral over $S$
+        \item $S[x]$ is a finite $S$-algebra
+        \item $S[x]$ is contained ina subring $T\subseteq R$ that is a finite $S$-alg
+        \item There is an $S[x]$-module $M$ such that $\Ann_{S[x]}(M) = 0$ and $M$ is finitely generated as a $S$-module.
+    \end{enumerate}
+\end{thm}
+\begin{lemma}
+    Let $S\subseteq R$ be an integral extension of rings. 
+    Let $Q\normal R$ be a prime ideal, and set $P = Q\cap S$.
+    Then $Q$ is maximal in $R$ iff $P$ is maximal in $S$.
+\end{lemma}
+\begin{lemma}
+    (Incomparability).
+    Let $S\subseteq R$ be an integral extension of rings.
+    Let $Q,Q'\normal R$ be prime ideals with $Q\subseteq Q'$ and $Q\cap S = Q'\cap S$. 
+    Then $Q = Q'$.
+\end{lemma}
+\begin{lemma}
+    (Lying over).
+    Let $S\subseteq R$ be an integral extension of rings.
+    Let $P\normal S$ be prime.
+    Then there exists a prime $Q\normal R$ such that $Q\cap S = P$.
+\end{lemma}
+\begin{thm}
+    \label{thm:going_up}
+    (Going up).
+    Let $S\subseteq R$ be an integral extension of rings.
+    Let $P_1\subseteq P_2\subseteq \cdots \subseteq P_n$ be a chain of primes in $S$ and $Q_1\subseteq Q_2\subseteq \cdots \subseteq Q_m$ with $0\le m < n$ be a chain of primes in $R$ with $Q_i\cap S = P_i$.
+    Then the chain can be extended to $Q_1\subseteq Q_2\subseteq \cdots \subseteq Q_n$ with $Q_i\cap S = P_i$.
+\end{thm}
+\begin{thm}
+    \label{thm:going_down}
+    (Going down).
+    Let $S\subseteq R$ be an integral extension of domains such that $S$ is normal.
+    Let $P_1\supseteq P_2\supseteq \cdots \supseteq P_n$ be a chain of primes in $S$ and $Q_1\supseteq Q_2\supseteq \cdots \supseteq Q_m$ with $0\le m < n$ be a chain of primes in $R$ with $Q_i\cap S = P_i$.
+    Then the chain can be extended to $Q_1\supseteq Q_2\supseteq \cdots \supseteq Q_n$ with $Q_i\cap S = P_i$.
+\end{thm}
+\begin{proposition}
+    Let $A\subset R$ be rings and $S$ a multiplicativly subset of $A$.
+    If $B$ is the integral closure of $A$ in $R$ then $B[S^{-1}]$ is the integral closure of $A[S^{-1}]$ in $R[S^{-1}]$.
+\end{proposition}
+\section{Noetherian Local Rings}
+\begin{thm}
+    \label{thm:noeth_loc_ring}
+    Let $R$ be a Noetherian local ring with maximal ideal $\mathfrak m$.
+    Then $\cap_n\mathfrak m^n = 0$.
+\end{thm}
+\section{Miscellaneous Results on DVRs and Dedekind domains}
+\begin{proposition}
+    Let $R$ be a Dedekind domain and $\mf p\normal R$ be a prime ideal.
+    Then for any $n\ge 1 $, 
+    \begin{equation}
+        R/\mf p^n \cong R_{\mf p}/\mf p_{\mf p}^n.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    We have the short exact sequence
+    \begin{equation}
+        0 \to \mf p^n \to R \to R/\mf p^n \to 0.
+    \end{equation}
+    Localising at $\mf p$ we get that 
+    \begin{equation}
+        R_{\mf p}/\mf p_{\mf p}^n \cong (R/\mf p^n)_{\mf p/\mf p^n}
+    \end{equation}
+    and so it suffices to show that all the elements not in $\mf p/\mf p^n$ are invertible in $R/\mf p^n$.
+    For this let $r\in R\backslash \mf p$.
+    Then $(r) + \mf p = R$ and so $(r) + \mf p^n = R$.
+    It follows that $r+\mf p^n$ is invertible in $R/\mf p^n$.
+\end{proof}
+\begin{proposition}
+    \label{prop:q_dim}
+    Let $R$ be a DVR with maximal ideal $\mf m$ and let $k$ be a field in $R/\mf m^n$.
+    Then $\dim_k(R/\mf m^n) = n\cdot\abs{R/\mf m:k}$.
+\end{proposition}
+\begin{proof}
+    We have the following chain of ideals, and hence $k$ vector spaces
+    \begin{equation}
+        0 \subseteq \mf m^{n-1}/\mf m^n \subseteq \cdots \subseteq \mf m/\mf m^n \subseteq R/\mf m^n.
+    \end{equation}
+    It follows that $\dim_k(R/\mf m^n) = \sum_{i = 0}^{n-1} \dim_k(\mf m^i/\mf m^{i+1})$.
+    But $\mf m^i/\mf m^{i+1} \cong \mf m^i\otimes_R R/\mf m \cong R/\mf m$ since $\mf m^i\cong R$ as $R$-modules.
+    As $k$ naturally lives inside $R/\mf m$ the result follows.
+\end{proof}
+\begin{proposition}
+    \label{prop:DVR_closure}
+    Let $R$ be a DVR and $K = \Frac(R) \le L$ be a finite field extension.
+    Let $S$ be the integral closure of $R$ in $L$, and suppose that $S$ is a finitely generated $R$-module.
+    Then $S$ is a free module of rank $\abs{L:K}$.
+\end{proposition}
+\begin{proof}
+    $R$ is a PID so $S$ is a free $R$-module.
+    Suppose $\alpha_1,\dots,\alpha_k$ are an $R$-basis for $S$.
+    Since $K.S = L$, $\alpha_1,\dots,\alpha_k$ span $L$ as a $K$ vector space.
+    But since $K = \Frac(R)$, they are also linearly independent over $K$ and so $k = \abs{L:K}$.
+\end{proof}
+\begin{proposition}
+    Let $R$ be a DVR.
+    Then $R$ is a maximal subring of $\Frac(R)$.
+\end{proposition}
+\begin{proof}
+    Obvious.
 \end{proof}
 \end{document}
 
